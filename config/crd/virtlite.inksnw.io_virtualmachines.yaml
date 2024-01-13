@@ -32,15 +32,1493 @@ spec:
           metadata:
             type: object
           spec:
-            description: VirtualMachineSpec defines the desired state of VirtualMachine
             properties:
-              foo:
-                description: Foo is an example field of VirtualMachine. Edit virtualmachine_types.go
-                  to remove/update
+              CPU:
+                properties:
+                  Features:
+                    items:
+                      properties:
+                        Name:
+                          type: string
+                        Policy:
+                          type: string
+                      type: object
+                    type: array
+                  Mode:
+                    type: string
+                  Model:
+                    type: string
+                  NUMA:
+                    properties:
+                      Cells:
+                        items:
+                          properties:
+                            CPUs:
+                              type: string
+                            ID:
+                              type: string
+                            Memory:
+                              format: int64
+                              type: integer
+                            MemoryAccess:
+                              type: string
+                            Unit:
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  Topology:
+                    properties:
+                      Cores:
+                        format: int32
+                        type: integer
+                      Sockets:
+                        format: int32
+                        type: integer
+                      Threads:
+                        format: int32
+                        type: integer
+                    type: object
+                type: object
+              CPUTune:
+                properties:
+                  EmulatorPin:
+                    properties:
+                      CPUSet:
+                        type: string
+                    type: object
+                  IOThreadPin:
+                    items:
+                      properties:
+                        CPUSet:
+                          type: string
+                        IOThread:
+                          format: int32
+                          type: integer
+                      type: object
+                    type: array
+                  VCPUPin:
+                    items:
+                      properties:
+                        CPUSet:
+                          type: string
+                        VCPU:
+                          format: int32
+                          type: integer
+                      type: object
+                    type: array
+                type: object
+              Clock:
+                properties:
+                  Adjustment:
+                    type: string
+                  Offset:
+                    type: string
+                  Timer:
+                    items:
+                      properties:
+                        Frequency:
+                          type: string
+                        Name:
+                          type: string
+                        Present:
+                          type: string
+                        TickPolicy:
+                          type: string
+                        Track:
+                          type: string
+                      type: object
+                    type: array
+                  Timezone:
+                    type: string
+                type: object
+              CurrentMemory:
+                properties:
+                  Unit:
+                    type: string
+                  Value:
+                    format: int64
+                    type: integer
+                type: object
+              Devices:
+                properties:
+                  Ballooning:
+                    properties:
+                      Address:
+                        properties:
+                          Bus:
+                            type: string
+                          Controller:
+                            type: string
+                          Device:
+                            type: string
+                          Domain:
+                            type: string
+                          Function:
+                            type: string
+                          Slot:
+                            type: string
+                          Target:
+                            type: string
+                          Type:
+                            type: string
+                          UUID:
+                            type: string
+                          Unit:
+                            type: string
+                        type: object
+                      Driver:
+                        properties:
+                          IOMMU:
+                            type: string
+                        type: object
+                      FreePageReporting:
+                        type: string
+                      Model:
+                        type: string
+                      Stats:
+                        properties:
+                          Period:
+                            type: integer
+                        type: object
+                    type: object
+                  Channels:
+                    items:
+                      properties:
+                        Source:
+                          properties:
+                            Mode:
+                              type: string
+                            Path:
+                              type: string
+                          type: object
+                        Target:
+                          properties:
+                            Address:
+                              type: string
+                            Name:
+                              type: string
+                            Port:
+                              type: integer
+                            State:
+                              type: string
+                            Type:
+                              type: string
+                          type: object
+                        Type:
+                          type: string
+                      type: object
+                    type: array
+                  Consoles:
+                    items:
+                      properties:
+                        Alias:
+                          properties:
+                            Name:
+                              type: string
+                            UserDefined:
+                              type: boolean
+                          type: object
+                        Source:
+                          properties:
+                            Mode:
+                              type: string
+                            Path:
+                              type: string
+                          type: object
+                        Target:
+                          properties:
+                            Port:
+                              type: integer
+                            Type:
+                              type: string
+                          type: object
+                        Type:
+                          type: string
+                      type: object
+                    type: array
+                  Controllers:
+                    items:
+                      description: Controller represens libvirt controller element
+                        https://libvirt.org/formatdomain.html#elementsControllers
+                      properties:
+                        Address:
+                          properties:
+                            Bus:
+                              type: string
+                            Controller:
+                              type: string
+                            Device:
+                              type: string
+                            Domain:
+                              type: string
+                            Function:
+                              type: string
+                            Slot:
+                              type: string
+                            Target:
+                              type: string
+                            Type:
+                              type: string
+                            UUID:
+                              type: string
+                            Unit:
+                              type: string
+                          type: object
+                        Alias:
+                          properties:
+                            Name:
+                              type: string
+                            UserDefined:
+                              type: boolean
+                          type: object
+                        Driver:
+                          description: BEGIN ControllerDriver
+                          properties:
+                            IOMMU:
+                              type: string
+                            IOThread:
+                              type: integer
+                            Queues:
+                              type: integer
+                          type: object
+                        Index:
+                          type: string
+                        Model:
+                          type: string
+                        Type:
+                          type: string
+                      type: object
+                    type: array
+                  Disks:
+                    items:
+                      properties:
+                        Address:
+                          properties:
+                            Bus:
+                              type: string
+                            Controller:
+                              type: string
+                            Device:
+                              type: string
+                            Domain:
+                              type: string
+                            Function:
+                              type: string
+                            Slot:
+                              type: string
+                            Target:
+                              type: string
+                            Type:
+                              type: string
+                            UUID:
+                              type: string
+                            Unit:
+                              type: string
+                          type: object
+                        Alias:
+                          properties:
+                            Name:
+                              type: string
+                            UserDefined:
+                              type: boolean
+                          type: object
+                        Auth:
+                          properties:
+                            Secret:
+                              properties:
+                                Type:
+                                  type: string
+                                UUID:
+                                  type: string
+                                Usage:
+                                  type: string
+                              type: object
+                            Username:
+                              type: string
+                          type: object
+                        BackingStore:
+                          properties:
+                            Format:
+                              properties:
+                                Type:
+                                  type: string
+                              type: object
+                            Source:
+                              properties:
+                                Dev:
+                                  type: string
+                                File:
+                                  type: string
+                                Host:
+                                  properties:
+                                    Name:
+                                      type: string
+                                    Port:
+                                      type: string
+                                  type: object
+                                Name:
+                                  type: string
+                                Protocol:
+                                  type: string
+                                Reservations:
+                                  properties:
+                                    Managed:
+                                      type: string
+                                    SourceReservations:
+                                      properties:
+                                        Mode:
+                                          type: string
+                                        Path:
+                                          type: string
+                                        Type:
+                                          type: string
+                                      type: object
+                                  type: object
+                                StartupPolicy:
+                                  type: string
+                              type: object
+                            Type:
+                              type: string
+                          type: object
+                        BlockIO:
+                          properties:
+                            LogicalBlockSize:
+                              type: integer
+                            PhysicalBlockSize:
+                              type: integer
+                          type: object
+                        BootOrder:
+                          properties:
+                            Order:
+                              type: integer
+                          type: object
+                        Capacity:
+                          format: int64
+                          type: integer
+                        Device:
+                          type: string
+                        Driver:
+                          properties:
+                            Cache:
+                              type: string
+                            Discard:
+                              type: string
+                            IOMMU:
+                              type: string
+                            IOThread:
+                              type: integer
+                            Name:
+                              type: string
+                            Queues:
+                              type: integer
+                            Type:
+                              type: string
+                          type: object
+                        ExpandDisksEnabled:
+                          type: boolean
+                        Model:
+                          type: string
+                        ReadOnly:
+                          type: object
+                        Serial:
+                          type: string
+                        Shareable:
+                          type: object
+                        Snapshot:
+                          type: string
+                        Source:
+                          properties:
+                            Dev:
+                              type: string
+                            File:
+                              type: string
+                            Host:
+                              properties:
+                                Name:
+                                  type: string
+                                Port:
+                                  type: string
+                              type: object
+                            Name:
+                              type: string
+                            Protocol:
+                              type: string
+                            Reservations:
+                              properties:
+                                Managed:
+                                  type: string
+                                SourceReservations:
+                                  properties:
+                                    Mode:
+                                      type: string
+                                    Path:
+                                      type: string
+                                    Type:
+                                      type: string
+                                  type: object
+                              type: object
+                            StartupPolicy:
+                              type: string
+                          type: object
+                        Target:
+                          properties:
+                            Device:
+                              type: string
+                            Tray:
+                              type: string
+                          type: object
+                        Type:
+                          type: string
+                      required:
+                      - Source
+                      - Target
+                      type: object
+                    type: array
+                  Emulator:
+                    type: string
+                  Filesystems:
+                    items:
+                      properties:
+                        AccessMode:
+                          type: string
+                        Binary:
+                          properties:
+                            Cache:
+                              properties:
+                                Mode:
+                                  type: string
+                              type: object
+                            Lock:
+                              properties:
+                                Flock:
+                                  type: string
+                                Posix:
+                                  type: string
+                              type: object
+                            Path:
+                              type: string
+                            Xattr:
+                              type: string
+                          type: object
+                        Driver:
+                          properties:
+                            Queue:
+                              type: string
+                            Type:
+                              type: string
+                          type: object
+                        Source:
+                          properties:
+                            Dir:
+                              type: string
+                            Socket:
+                              type: string
+                          type: object
+                        Target:
+                          properties:
+                            Dir:
+                              type: string
+                          type: object
+                        Type:
+                          type: string
+                      type: object
+                    type: array
+                  Graphics:
+                    items:
+                      properties:
+                        AutoPort:
+                          type: string
+                        DefaultMode:
+                          type: string
+                        Listen:
+                          properties:
+                            Address:
+                              type: string
+                            Network:
+                              type: string
+                            Socket:
+                              type: string
+                            Type:
+                              type: string
+                          type: object
+                        PasswdValidTo:
+                          type: string
+                        Port:
+                          format: int32
+                          type: integer
+                        TLSPort:
+                          type: integer
+                        Type:
+                          type: string
+                      type: object
+                    type: array
+                  HostDevices:
+                    items:
+                      description: BEGIN HostDevice -----------------------------
+                      properties:
+                        Address:
+                          properties:
+                            Bus:
+                              type: string
+                            Controller:
+                              type: string
+                            Device:
+                              type: string
+                            Domain:
+                              type: string
+                            Function:
+                              type: string
+                            Slot:
+                              type: string
+                            Target:
+                              type: string
+                            Type:
+                              type: string
+                            UUID:
+                              type: string
+                            Unit:
+                              type: string
+                          type: object
+                        Alias:
+                          properties:
+                            Name:
+                              type: string
+                            UserDefined:
+                              type: boolean
+                          type: object
+                        BootOrder:
+                          properties:
+                            Order:
+                              type: integer
+                          type: object
+                        Display:
+                          type: string
+                        Managed:
+                          type: string
+                        Mode:
+                          type: string
+                        Model:
+                          type: string
+                        RamFB:
+                          type: string
+                        Source:
+                          properties:
+                            Address:
+                              properties:
+                                Bus:
+                                  type: string
+                                Controller:
+                                  type: string
+                                Device:
+                                  type: string
+                                Domain:
+                                  type: string
+                                Function:
+                                  type: string
+                                Slot:
+                                  type: string
+                                Target:
+                                  type: string
+                                Type:
+                                  type: string
+                                UUID:
+                                  type: string
+                                Unit:
+                                  type: string
+                              type: object
+                          type: object
+                        Type:
+                          type: string
+                        XMLName:
+                          properties:
+                            Local:
+                              type: string
+                            Space:
+                              type: string
+                          type: object
+                      required:
+                      - Source
+                      - XMLName
+                      type: object
+                    type: array
+                  Interfaces:
+                    items:
+                      properties:
+                        ACPI:
+                          properties:
+                            Index:
+                              type: integer
+                          type: object
+                        Address:
+                          properties:
+                            Bus:
+                              type: string
+                            Controller:
+                              type: string
+                            Device:
+                              type: string
+                            Domain:
+                              type: string
+                            Function:
+                              type: string
+                            Slot:
+                              type: string
+                            Target:
+                              type: string
+                            Type:
+                              type: string
+                            UUID:
+                              type: string
+                            Unit:
+                              type: string
+                          type: object
+                        Alias:
+                          properties:
+                            Name:
+                              type: string
+                            UserDefined:
+                              type: boolean
+                          type: object
+                        Backend:
+                          properties:
+                            LogFile:
+                              type: string
+                            Type:
+                              type: string
+                          type: object
+                        BandWidth:
+                          type: object
+                        BootOrder:
+                          properties:
+                            Order:
+                              type: integer
+                          type: object
+                        Driver:
+                          properties:
+                            IOMMU:
+                              type: string
+                            Name:
+                              type: string
+                            Queues:
+                              type: integer
+                          type: object
+                        FilterRef:
+                          properties:
+                            Filter:
+                              type: string
+                          type: object
+                        LinkState:
+                          properties:
+                            State:
+                              type: string
+                          type: object
+                        MAC:
+                          properties:
+                            MAC:
+                              type: string
+                          type: object
+                        MTU:
+                          properties:
+                            Size:
+                              type: string
+                          type: object
+                        Model:
+                          properties:
+                            Type:
+                              type: string
+                          type: object
+                        PortForward:
+                          items:
+                            properties:
+                              Address:
+                                type: string
+                              Dev:
+                                type: string
+                              Proto:
+                                type: string
+                              Ranges:
+                                items:
+                                  properties:
+                                    End:
+                                      type: integer
+                                    Exclude:
+                                      type: string
+                                    Start:
+                                      type: integer
+                                    To:
+                                      type: integer
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        Rom:
+                          properties:
+                            Enabled:
+                              type: string
+                          type: object
+                        Source:
+                          properties:
+                            Address:
+                              properties:
+                                Bus:
+                                  type: string
+                                Controller:
+                                  type: string
+                                Device:
+                                  type: string
+                                Domain:
+                                  type: string
+                                Function:
+                                  type: string
+                                Slot:
+                                  type: string
+                                Target:
+                                  type: string
+                                Type:
+                                  type: string
+                                UUID:
+                                  type: string
+                                Unit:
+                                  type: string
+                              type: object
+                            Bridge:
+                              type: string
+                            Device:
+                              type: string
+                            Mode:
+                              type: string
+                            Network:
+                              type: string
+                          type: object
+                        Target:
+                          properties:
+                            Device:
+                              type: string
+                            Managed:
+                              type: string
+                          type: object
+                        TrustGuestRxFilters:
+                          type: string
+                        Type:
+                          type: string
+                      required:
+                      - Source
+                      type: object
+                    type: array
+                  Memory:
+                    properties:
+                      Address:
+                        properties:
+                          Bus:
+                            type: string
+                          Controller:
+                            type: string
+                          Device:
+                            type: string
+                          Domain:
+                            type: string
+                          Function:
+                            type: string
+                          Slot:
+                            type: string
+                          Target:
+                            type: string
+                          Type:
+                            type: string
+                          UUID:
+                            type: string
+                          Unit:
+                            type: string
+                        type: object
+                      Alias:
+                        properties:
+                          Name:
+                            type: string
+                          UserDefined:
+                            type: boolean
+                        type: object
+                      Model:
+                        type: string
+                      Target:
+                        properties:
+                          Block:
+                            properties:
+                              Unit:
+                                type: string
+                              Value:
+                                format: int64
+                                type: integer
+                            type: object
+                          Current:
+                            properties:
+                              Unit:
+                                type: string
+                              Value:
+                                format: int64
+                                type: integer
+                            type: object
+                          Node:
+                            type: string
+                          Requested:
+                            properties:
+                              Unit:
+                                type: string
+                              Value:
+                                format: int64
+                                type: integer
+                            type: object
+                          Size:
+                            properties:
+                              Unit:
+                                type: string
+                              Value:
+                                format: int64
+                                type: integer
+                            type: object
+                        required:
+                        - Block
+                        - Current
+                        - Requested
+                        - Size
+                        type: object
+                      XMLName:
+                        properties:
+                          Local:
+                            type: string
+                          Space:
+                            type: string
+                        type: object
+                    required:
+                    - XMLName
+                    type: object
+                  Redirs:
+                    items:
+                      description: 'RedirectedDevice describes a device to be redirected
+                        See: https://libvirt.org/formatdomain.html#redirected-devices'
+                      properties:
+                        Bus:
+                          type: string
+                        Source:
+                          properties:
+                            Mode:
+                              type: string
+                            Path:
+                              type: string
+                          type: object
+                        Type:
+                          type: string
+                      required:
+                      - Source
+                      type: object
+                    type: array
+                  Rng:
+                    description: Rng represents the source of entropy from host to
+                      VM
+                    properties:
+                      Address:
+                        properties:
+                          Bus:
+                            type: string
+                          Controller:
+                            type: string
+                          Device:
+                            type: string
+                          Domain:
+                            type: string
+                          Function:
+                            type: string
+                          Slot:
+                            type: string
+                          Target:
+                            type: string
+                          Type:
+                            type: string
+                          UUID:
+                            type: string
+                          Unit:
+                            type: string
+                        type: object
+                      Backend:
+                        description: Backend specifies the source of entropy to be
+                          used
+                        properties:
+                          Model:
+                            description: Model is source model
+                            type: string
+                          Source:
+                            description: specifies the source of entropy to be used
+                            type: string
+                        type: object
+                      Driver:
+                        properties:
+                          IOMMU:
+                            type: string
+                        type: object
+                      Model:
+                        description: Model attribute specifies what type of RNG device
+                          is provided
+                        type: string
+                    type: object
+                  Serials:
+                    items:
+                      properties:
+                        Alias:
+                          properties:
+                            Name:
+                              type: string
+                            UserDefined:
+                              type: boolean
+                          type: object
+                        Log:
+                          properties:
+                            Append:
+                              type: string
+                            File:
+                              type: string
+                          type: object
+                        Source:
+                          properties:
+                            Mode:
+                              type: string
+                            Path:
+                              type: string
+                          type: object
+                        Target:
+                          properties:
+                            Port:
+                              type: integer
+                          type: object
+                        Type:
+                          type: string
+                      type: object
+                    type: array
+                  SoundCards:
+                    items:
+                      properties:
+                        Alias:
+                          properties:
+                            Name:
+                              type: string
+                            UserDefined:
+                              type: boolean
+                          type: object
+                        Model:
+                          type: string
+                      type: object
+                    type: array
+                  TPMs:
+                    items:
+                      properties:
+                        Backend:
+                          properties:
+                            PersistentState:
+                              type: string
+                            Type:
+                              type: string
+                            Version:
+                              type: string
+                          type: object
+                        Model:
+                          type: string
+                      required:
+                      - Backend
+                      type: object
+                    type: array
+                  VSOCK:
+                    properties:
+                      CID:
+                        properties:
+                          Address:
+                            format: int32
+                            type: integer
+                          Auto:
+                            type: string
+                        type: object
+                      Model:
+                        type: string
+                    required:
+                    - CID
+                    type: object
+                  Video:
+                    items:
+                      properties:
+                        Model:
+                          properties:
+                            Heads:
+                              type: integer
+                            Ram:
+                              type: integer
+                            Type:
+                              type: string
+                            VGAMem:
+                              type: integer
+                            VRam:
+                              type: integer
+                          type: object
+                      required:
+                      - Model
+                      type: object
+                    type: array
+                  Watchdogs:
+                    items:
+                      properties:
+                        Action:
+                          type: string
+                        Address:
+                          properties:
+                            Bus:
+                              type: string
+                            Controller:
+                              type: string
+                            Device:
+                              type: string
+                            Domain:
+                              type: string
+                            Function:
+                              type: string
+                            Slot:
+                              type: string
+                            Target:
+                              type: string
+                            Type:
+                              type: string
+                            UUID:
+                              type: string
+                            Unit:
+                              type: string
+                          type: object
+                        Alias:
+                          properties:
+                            Name:
+                              type: string
+                            UserDefined:
+                              type: boolean
+                          type: object
+                        Model:
+                          type: string
+                      type: object
+                    type: array
+                type: object
+              Features:
+                properties:
+                  ACPI:
+                    type: object
+                  APIC:
+                    type: object
+                  Hyperv:
+                    properties:
+                      EVMCS:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      Frequencies:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      IPI:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      Reenlightenment:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      Relaxed:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      Reset:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      Runtime:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      Spinlocks:
+                        properties:
+                          Retries:
+                            format: int32
+                            type: integer
+                          State:
+                            type: string
+                        type: object
+                      SyNIC:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      SyNICTimer:
+                        properties:
+                          Direct:
+                            properties:
+                              State:
+                                type: string
+                            type: object
+                          State:
+                            type: string
+                        type: object
+                      TLBFlush:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      VAPIC:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      VPIndex:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      VendorID:
+                        properties:
+                          State:
+                            type: string
+                          Value:
+                            type: string
+                        type: object
+                    type: object
+                  KVM:
+                    properties:
+                      Hidden:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                      HintDedicated:
+                        properties:
+                          State:
+                            type: string
+                        type: object
+                    type: object
+                  PMU:
+                    properties:
+                      State:
+                        type: string
+                    type: object
+                  PVSpinlock:
+                    properties:
+                      State:
+                        type: string
+                    type: object
+                  SMM:
+                    type: object
+                type: object
+              IOThreads:
+                properties:
+                  IOThreads:
+                    type: integer
+                type: object
+              LaunchSecurity:
+                properties:
+                  Cbitpos:
+                    type: string
+                  DHCert:
+                    type: string
+                  Policy:
+                    type: string
+                  ReducedPhysBits:
+                    type: string
+                  Session:
+                    type: string
+                  Type:
+                    type: string
+                type: object
+              MaxMemory:
+                properties:
+                  Slots:
+                    format: int64
+                    type: integer
+                  Unit:
+                    type: string
+                  Value:
+                    format: int64
+                    type: integer
+                type: object
+              Memory:
+                properties:
+                  Unit:
+                    type: string
+                  Value:
+                    format: int64
+                    type: integer
+                type: object
+              MemoryBacking:
+                description: MemoryBacking mirroring libvirt XML under https://libvirt.org/formatdomain.html#elementsMemoryBacking
+                properties:
+                  Access:
+                    properties:
+                      Mode:
+                        type: string
+                    type: object
+                  Allocation:
+                    properties:
+                      Mode:
+                        type: string
+                    type: object
+                  HugePages:
+                    description: HugePages mirroring libvirt XML under memoryBacking
+                    properties:
+                      HugePage:
+                        items:
+                          description: HugePage mirroring libvirt XML under hugepages
+                          properties:
+                            NodeSet:
+                              type: string
+                            Size:
+                              type: string
+                            Unit:
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  NoSharePages:
+                    type: object
+                  Source:
+                    properties:
+                      Type:
+                        type: string
+                    type: object
+                type: object
+              NUMATune:
+                properties:
+                  MemNodes:
+                    items:
+                      properties:
+                        CellID:
+                          format: int32
+                          type: integer
+                        Mode:
+                          type: string
+                        NodeSet:
+                          type: string
+                      type: object
+                    type: array
+                  Memory:
+                    properties:
+                      Mode:
+                        type: string
+                      NodeSet:
+                        type: string
+                    type: object
+                required:
+                - Memory
+                type: object
+              Name:
                 type: string
+              OS:
+                properties:
+                  ACPI:
+                    properties:
+                      Table:
+                        properties:
+                          Path:
+                            type: string
+                          Type:
+                            type: string
+                        type: object
+                    required:
+                    - Table
+                    type: object
+                  BIOS:
+                    description: TODO <bios rebootTimeout='0'/>
+                    properties:
+                      UseSerial:
+                        type: string
+                    type: object
+                  BootLoader:
+                    properties:
+                      Path:
+                        type: string
+                      ReadOnly:
+                        type: string
+                      Secure:
+                        type: string
+                      Type:
+                        type: string
+                    type: object
+                  BootMenu:
+                    properties:
+                      Enable:
+                        type: string
+                      Timeout:
+                        type: integer
+                    type: object
+                  BootOrder:
+                    items:
+                      properties:
+                        Dev:
+                          type: string
+                      type: object
+                    type: array
+                  Initrd:
+                    type: string
+                  Kernel:
+                    type: string
+                  KernelArgs:
+                    type: string
+                  NVRam:
+                    properties:
+                      NVRam:
+                        type: string
+                      Template:
+                        type: string
+                    type: object
+                  SMBios:
+                    properties:
+                      Mode:
+                        type: string
+                    type: object
+                  Type:
+                    properties:
+                      Arch:
+                        type: string
+                      Machine:
+                        type: string
+                      OS:
+                        type: string
+                    type: object
+                required:
+                - Type
+                type: object
+              QEMUCmd:
+                properties:
+                  QEMUArg:
+                    items:
+                      properties:
+                        Value:
+                          type: string
+                      type: object
+                    type: array
+                  QEMUEnv:
+                    items:
+                      properties:
+                        Name:
+                          type: string
+                        Value:
+                          type: string
+                      type: object
+                    type: array
+                type: object
+              Resource:
+                properties:
+                  Partition:
+                    type: string
+                type: object
+              SysInfo:
+                properties:
+                  BIOS:
+                    items:
+                      properties:
+                        Name:
+                          type: string
+                        Value:
+                          type: string
+                      type: object
+                    type: array
+                  BaseBoard:
+                    items:
+                      properties:
+                        Name:
+                          type: string
+                        Value:
+                          type: string
+                      type: object
+                    type: array
+                  Chassis:
+                    items:
+                      properties:
+                        Name:
+                          type: string
+                        Value:
+                          type: string
+                      type: object
+                    type: array
+                  System:
+                    items:
+                      properties:
+                        Name:
+                          type: string
+                        Value:
+                          type: string
+                      type: object
+                    type: array
+                  Type:
+                    type: string
+                type: object
+              Type:
+                type: string
+              UUID:
+                type: string
+              VCPU:
+                properties:
+                  CPUs:
+                    format: int32
+                    type: integer
+                  Placement:
+                    type: string
+                type: object
+              VCPUs:
+                properties:
+                  VCPU:
+                    items:
+                      properties:
+                        Enabled:
+                          type: string
+                        Hotpluggable:
+                          type: string
+                        ID:
+                          format: int32
+                          type: integer
+                        Order:
+                          format: int32
+                          type: integer
+                      type: object
+                    type: array
+                type: object
+              XMLName:
+                properties:
+                  Local:
+                    type: string
+                  Space:
+                    type: string
+                type: object
+              XmlNS:
+                type: string
+            required:
+            - CPU
+            - Devices
+            - Memory
+            - OS
+            - XMLName
+            - XmlNS
             type: object
           status:
             description: VirtualMachineStatus defines the observed state of VirtualMachine
+            properties:
+              nodeName:
+                type: string
+              phase:
+                type: string
+              vmPodName:
+                type: string
+              vmPodUID:
+                description: UID is a type that holds unique ID values, including
+                  UUIDs.  Because we don't ONLY use UUIDs, this is an alias to string.  Being
+                  a type captures intent and helps make sure that UIDs and names do
+                  not get conflated.
+                type: string
             type: object
         type: object
     served: true

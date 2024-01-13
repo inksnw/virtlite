@@ -1,0 +1,73 @@
+apiVersion: virtlite.inksnw.io/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: ubuntu-vm
+spec:
+  Type: kvm
+  XMLName:
+    Local: "domain"
+    Space: "http://libvirt.org/schemas/domain/virtlite/1.0"
+  XmlNS: "http://libvirt.org/schemas/domain/virtlite/1.0"
+  CPU:
+    Mode: host-passthrough
+    Topology:
+      Sockets: 2
+      Cores: 1
+      Threads: 1
+  Devices:
+    Interfaces:
+      - Type: bridge
+        Source:
+          Bridge: br0
+        Target:
+          Device: vnet9
+        MAC:
+          MAC: 52:54:00:78:e8:57
+        Model:
+          Type: virtio
+        Address:
+          Type: pci
+          Domain: "0x0000"
+          Bus: "0x02"
+          Slot: "0x00"
+          Function: "0x0"
+    Graphics:
+      - Type: vnc
+        Port: 5909
+        Listen:
+          Type: address
+          Address: 127.0.0.1
+    Disks:
+      - Device: disk
+        Type: file
+        Source:
+          File: /var/lib/libvirt/images/no2.qcow2
+        Target:
+          Device: vda
+          Tray: closed
+        Driver:
+          Name: qemu
+          Type: qcow2
+          Discard: unmap
+        Address:
+          Type: pci
+          Domain: "0x0000"
+          Bus: "0x04"
+          Slot: "0x00"
+          Function: "0x0"
+  Memory:
+    Unit: KiB
+    Value: 2048000
+  OS:
+    Type:
+      Arch: x86_64
+      Machine: pc-q35-7.2
+      OS: hvm
+    BootOrder:
+      - Dev: hd
+  Resource:
+    Partition: /machine
+  VCPU:
+    CPUs: 2
+    Placement: static
+  Name: ubuntu-vm

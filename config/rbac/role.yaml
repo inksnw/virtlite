@@ -4,29 +4,29 @@ kind: ClusterRole
 metadata:
   name: manager-role
 rules:
-- apiGroups:
-  - virtlite.inksnw.io
-  resources:
-  - virtualmachines
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - virtlite.inksnw.io
-  resources:
-  - virtualmachines/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - virtlite.inksnw.io
-  resources:
-  - virtualmachines/status
-  verbs:
-  - get
-  - patch
-  - update
+  - apiGroups:
+      - virtlite.inksnw.io
+    resources:
+      - virtualmachines
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - virtlite.inksnw.io
+    resources:
+      - virtualmachines/finalizers
+    verbs:
+      - update
+  - apiGroups:
+      - virtlite.inksnw.io
+    resources:
+      - virtualmachines/status
+    verbs:
+      - get
+      - patch
+      - update
